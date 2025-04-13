@@ -1,17 +1,21 @@
-const hour = document.querySelector(".hour");
-const minute = document.querySelector(".minute");
-const second = document.querySelector(".second");
-function setdate(){//normal
-    const now = new Date();
-    const getSecond = now.getSeconds();
-    const getMinute = now.getMinutes();
-    const getHour = now.getHours();
+const valueBox = document.getElementById("valuebox");
 
-    const secondDegree = (getSecond / 60) * 360;
-    const minuteDegree = (getMinute / 60) * 360;
-    const hourDegree = (getHour / 12) * 360;
-    second.style.transform = `rotate(${secondDegree}deg)`;
-    minute.style.transform = `rotate(${minuteDegree}deg)`;
-    hour.style.transform = `rotate(${hourDegree}deg)`;
+function display(value) {
+  valueBox.value += value;
 }
-setInterval(setdate,1000);//call back function
+
+function calculate() {
+  try {
+    valueBox.value = eval(valueBox.value);
+  } catch (error) {
+    valueBox.value = "Error";
+  }
+}
+
+function clearinput() {
+  valueBox.value = "";
+}
+
+function del() {
+  valueBox.value = valueBox.value.slice(0, -1);
+}
